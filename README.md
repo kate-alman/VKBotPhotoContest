@@ -11,8 +11,9 @@
 <img src="https://files.virgool.io/upload/users/30711/posts/mivbx6r9geed/nwqgenmrbrfc.jpeg" title="Asyncio" height="50"/>
 <img src="https://www.blender.org/wp-content/uploads/2021/11/alembic_logo_symbol.png" title="Alembc" height="50"/>
 <img src="https://quintagroup.com/cms/python/images/sqlalchemy-logo.png/@@images/eca35254-a2db-47a8-850b-2678f7f8bc09.png" title="SQLAlchemy" height="50"/>
-<img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1629869194/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" title="Postman" height="50"/><br>
-</p>
+<img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1629869194/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" title="Postman" height="50"/>
+<img src="https://marshmallow.readthedocs.io/en/stable/_static/marshmallow-logo.png" title="Marshmallow" height="100"/>
+</p>    
 
 ### Poller    
 Получает обновления с внешнего сервера (vk) и передает их на дальнейшую обработку.
