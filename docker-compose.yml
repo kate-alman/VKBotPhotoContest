@@ -1,0 +1,104 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - .env_dev
+    volumes:
+      - pg_volume:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - contest_bot
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '6080:6080'
+    networks:
+      - contest_bot
+
+  rabbitmq:
+    image: heidiks/rabbitmq-delayed-message-exchange:latest
+    hostname: rabbitmq
+    restart: always
+    env_file:
+      - .env_dev
+    ports:
+      - "5773:5672"
+      - "15773:15672"
+    networks:
+      - contest_bot
+
+  poller_app:
+    container_name: poller_app_container
+    build:
+      context: .
+      dockerfile: ./docker_divided/poller/Dockerfile
+    image: katealman/contest_bot:poller
+    restart: always
+    env_file:
+      - .env_dev
+    command: sh -c "cd /code/app/poller_app/ && python main.py"
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - contest_bot
+
+  worker_app:
+    container_name: worker_app_container
+    build:
+      context: .
+      dockerfile: ./docker_divided/worker/Dockerfile
+    image: katealman/contest_bot:worker
+    restart: always
+    env_file:
+      - .env_dev
+    command: sh -c "cd /code/app/worker/ && python main.py"
+    depends_on:
+      - poller_app
+    networks:
+      - contest_bot
+
+  sender_app:
+    container_name: sender_app_container
+    build:
+      context: .
+      dockerfile: ./docker_divided/sender/Dockerfile
+    image: katealman/contest_bot:sender
+    restart: always
+    env_file:
+      - .env_dev
+    command: sh -c "cd /code/app/sender_app/ && python main.py"
+    depends_on:
+      - worker_app
+    networks:
+      - contest_bot
+
+  main_app:
+    container_name: main_app_container
+    build:
+      context: .
+      dockerfile: ./docker_divided/main_app/Dockerfile
+    depends_on:
+      - db
+    image: katealman/contest_bot:aiohttp
+    restart: always
+    env_file:
+      - .env_dev
+    command: sh -c "alembic upgrade head && python main_app.py"
+    ports:
+      - "8090:8090"
+    networks:
+      - contest_bot
+
+volumes:
+  pg_volume:
+
+networks:
+  contest_bot:
+    driver: bridge
