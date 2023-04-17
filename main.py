@@ -1,3 +1,4 @@
+import os
 import typing
 
 from aiohttp.web_runner import AppRunner, TCPSite
@@ -21,7 +22,7 @@ class Runner:
 
     async def start(self) -> None:
         await self.runner.setup()
-        site = TCPSite(self.runner, port=8089)
+        site = TCPSite(self.runner, host=os.environ['APP_IP'], port=os.environ['APP_PORT'])
         await site.start()
 
     async def stop(self) -> None:

@@ -1,6 +1,8 @@
 # Бот "Фотоконкурс"
 
-#### _# photo-contest-bot_
+#### # доступен по [ссылке](https://vk.com/public218736073) 
+
+
 
 ### Технологии
 <p>
@@ -54,4 +56,3 @@ _Кнопки голосования_
 
 #### Архитектура
 ![](https://sun9-14.userapi.com/impg/FX2W-sQjrw6SdMqHtuyf35r9q_QoMB3gIYgAbQ/Amj4o0wFWto.jpg?size=716x441&quality=95&sign=4d52a5ee4b4831cec6b34677f0335ce3&type=album)
-
