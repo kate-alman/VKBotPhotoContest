@@ -31,44 +31,48 @@ START_CONTEST_KEYBOARD = {
             }
         ],
         [
-            {
-                "action": {
-                    "type": "text",
-                    "label": "Доступные команды",
-                    "payload": {"button": "help"},
-                },
-                "color": "primary",
-            }
+
+                {
+                    "action": {
+                        "type": "text",
+                        "label": "Доступные команды",
+                        "payload": {"button": "help"},
+                    },
+                    "color": "secondary",
+                }
+                ,
+
+                {
+                    "action": {
+                        "type": "text",
+                        "label": "Правила конкурса",
+                        "payload": {"button": "rules"},
+                    },
+                    "color": "secondary",
+                }
+
         ],
         [
-            {
-                "action": {
-                    "type": "text",
-                    "label": "Правила конкурса",
-                    "payload": {"button": "rules"},
-                },
-                "color": "secondary",
-            }
-        ],
-        [
-            {
-                "action": {
-                    "type": "text",
-                    "label": "Победитель прошлой игры",
-                    "payload": {"button": "history"},
-                },
-                "color": "primary",
-            }
-        ],
-        [
-            {
-                "action": {
-                    "type": "text",
-                    "label": "Статистика",
-                    "payload": {"button": "statistic"},
-                },
-                "color": "secondary",
-            }
+
+                {
+                    "action": {
+                        "type": "text",
+                        "label": "Победитель прошлой игры",
+                        "payload": {"button": "history"},
+                    },
+                    "color": "primary",
+                }
+                ,
+
+                {
+                    "action": {
+                        "type": "text",
+                        "label": "Статистика",
+                        "payload": {"button": "statistic"},
+                    },
+                    "color": "primary",
+                }
+
         ],
         # [
         #     {
@@ -147,24 +151,26 @@ def set_inline_keyboard(left: Member, right: Member) -> dict:
         "inline": True,
         "buttons": [
             [
-                {
-                    "action": {
-                        "type": "text",
-                        "label": f"{left.name}",
-                        "payload": {"button": f"{left.id}"},
-                    },
-                    "color": "secondary",
-                }
-            ],
-            [
-                {
-                    "action": {
-                        "type": "text",
-                        "label": f"{right.name}",
-                        "payload": {"button": f"{right.id}"},
-                    },
-                    "color": "primary",
-                }
+
+                    {
+                        "action": {
+                            "type": "text",
+                            "label": f"{left.name}",
+                            "payload": {"button": f"{left.id}"},
+                        },
+                        "color": "secondary",
+                    }
+                    ,
+
+                    {
+                        "action": {
+                            "type": "text",
+                            "label": f"{right.name}",
+                            "payload": {"button": f"{right.id}"},
+                        },
+                        "color": "primary",
+                    }
+
             ],
             [
                 {
