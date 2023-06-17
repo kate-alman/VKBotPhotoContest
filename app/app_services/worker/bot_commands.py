@@ -2,6 +2,7 @@ import asyncio
 import logging
 import re
 from dataclasses import asdict
+import random
 from typing import Optional
 
 import typing
@@ -136,7 +137,7 @@ class BotWorker:
         умножение на -1, потому что при эвентах, вк передает айдишники групп отрицательными,
         не беру проверяемый айди по модулю, потому что это может быть строкой,
         чтобы доп. ошибки не ловить"""
-        return self.config.bot.group_id * -1 == id_
+        return int(self.config.bot.group_id) * -1 == id_
 
     async def _handler(self, update: Update) -> None:
         """Колдует сообщение из обновления и передает обработчику"""
@@ -178,9 +179,10 @@ class BotWorker:
         chat_id = update.object.peer_id
         if self._check_private_convarsation(chat_id):
             # если бота запустили в личных сообщениях, то отправит предупреждение
+            fact = random.choice(Info.RANDOM_FACT)
             return Message(
                 receiver_id=chat_id,
-                text=Info.PRIVATE_CONVERSATION,
+                text=f"{Info.PRIVATE_CONVERSATION} {fact}",
                 keyboard=COMMAND_START_KEYBOARD,
             )
         # если админа нет, выкинет исключение и напишет об этом
